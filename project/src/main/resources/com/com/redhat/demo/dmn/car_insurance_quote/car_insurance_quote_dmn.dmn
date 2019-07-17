@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_34ef0eb5-6e39-4c82-a763-fcdb27965cab" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="5.2.14.2" id="_34ef0eb5-6e39-4c82-a763-fcdb27965cab" name="car_insurance_quote" namespace="http://www.trisotech.com/definitions/_34ef0eb5-6e39-4c82-a763-fcdb27965cab" triso:logoChoice="Default">
+  <semantic:extensionElements/>
+  <semantic:itemDefinition label="Car" name="Car">
+    <semantic:itemComponent id="_7fe7b829-f045-46d2-84f6-7865e38a5529" name="type">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_4b5ad06c-d345-4247-bb5b-ea025d390f3d" name="price">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_6cb1d6e9-cae2-4c33-b820-b7e391d57ab1" name="age">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="Driver" name="Driver">
+    <semantic:itemComponent id="_3cd1c2ce-4afe-4718-af89-44185915fd4b" name="age">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_1d9c2810-c98f-478c-a851-bc9b8d25c265" name="numAccidents">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_7dbc90e1-083e-43a5-9495-7220a061e79a" name="numTickets">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="Multiplier" name="Multiplier">
+    <semantic:typeRef>feel:number</semantic:typeRef>
+  </semantic:itemDefinition>
+  <semantic:decision id="_002cc8df-576f-477e-8ff6-c5bbb1c5ee82" name="Car Type Multiplier">
+    <semantic:variable id="_84c1e6ea-2cd5-444a-8636-3720fd39d1d0" name="Car Type Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_015a5c24-f7b4-4330-be3e-d867aee2274c"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_c0687cd4-3aed-470d-b65e-8f9605fb1953" outputLabel="Car Type Multiplier">
+      <semantic:input id="_b31bf560-d186-496e-a82a-29f115e6d60a">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Car.type</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_cd81539a-6369-40f2-ad93-7143dca0af26"/>
+      <semantic:rule id="_96648d87-29c9-4a2a-a08b-0ed884950a4e">
+        <semantic:inputEntry id="_5e0fa4f8-3ae1-46b6-afe4-d4444e6a1603">
+          <semantic:text>"sedan"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_9ae2c4e7-4f14-456f-8897-b2f2124d9a73">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_3dd90d21-18e5-443b-99e3-7f789cf4ba31">
+        <semantic:inputEntry id="_7180fa5a-b86a-44e8-89ab-2493c728829a">
+          <semantic:text>"coupe"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_358da93f-7dab-4a46-b3f2-543d8ca24b4f">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_3e6f97e5-9aa0-40b3-a889-33ca4084e61b">
+        <semantic:inputEntry id="_9b1a05cf-aaf6-411f-8537-08f6627148ac">
+          <semantic:text>"suv"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_58c5c10b-7edf-4df7-a1f6-c4396d4434e4">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_53f637e4-8817-44da-9d8b-c2d58c7a778c">
+        <semantic:inputEntry id="_64127421-8bf7-46a7-9c77-9f8140888190">
+          <semantic:text>"truck"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_3ece3c8c-c799-4705-ae79-9e0f20cd1069">
+          <semantic:text>1.3</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_518ebe81-bfd5-4d49-b2a1-0d030330947e">
+        <semantic:inputEntry id="_0cb251b5-bedc-422b-b7fe-02b508d284e7">
+          <semantic:text>"van"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2e48b397-4517-4991-abfc-98ef5cf1f612">
+          <semantic:text>0.9</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_015a5c24-f7b4-4330-be3e-d867aee2274c" name="Car">
+    <semantic:variable id="_d0b753cd-0239-4b8e-bb05-7ed03ae6fc8c" name="Car" typeRef="Car"/>
+  </semantic:inputData>
+  <semantic:decision id="_cdfdd8a4-44f3-4606-9ec2-49aa7621a647" name="Car Price Multiplier">
+    <semantic:variable id="_3406050a-b05d-42a8-a2bc-f5394250191a" name="Car Price Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_015a5c24-f7b4-4330-be3e-d867aee2274c"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="FIRST" id="_bd699c7a-cc75-4d60-aa94-b9b6b68aa379" outputLabel="Car Price Multiplier">
+      <semantic:input id="_88f7b20e-6845-47fd-956b-f98ab84ff76d">
+        <semantic:inputExpression typeRef="feel:number">
+          <semantic:text>Car.price</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_bc9f47f5-1ff3-4ff6-8624-9434a42be96c"/>
+      <semantic:rule id="_e6c77f4f-f097-41f0-9ca2-b25c3b50305e">
+        <semantic:inputEntry id="_832a0f59-bbeb-4146-a0f8-eac8ea28c5ad">
+          <semantic:text>&gt;= 75000</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_644bbcbb-f11e-4cee-82e4-cb465033fe92">
+          <semantic:text>1.3</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_28d7f61a-8a43-4ec2-a937-f58fdf27ad0a">
+        <semantic:inputEntry id="_15c5dc3c-dd1a-46c8-b093-b7210d0b9edc">
+          <semantic:text>&gt;= 50000</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_8a171c97-4a08-47e1-8b4d-ba4aa2c99aa1">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_cb9abd66-377d-4224-96d6-a89d12f68c5c">
+        <semantic:inputEntry id="_87344dcd-f673-477b-adb6-f550f08c27ab">
+          <semantic:text>&gt;= 25000</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_ec3721a8-9da5-40c9-8012-1682c4b57ad8">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_e0fb4de5-2ebe-45c7-9a60-58449fec34d9">
+        <semantic:inputEntry id="_42c8c35d-6b04-4754-8fc7-9b76cb3ecc87">
+          <semantic:text>&gt;= 0</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_7f36bc98-255a-4482-8a57-7e49bfe4b899">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_0ddedbb6-d60c-42a2-a06b-c312dd09d8f2" name="Car Age Multiplier">
+    <semantic:variable id="_e1a5bec8-c919-459d-85aa-e8c97b20be96" name="Car Age Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_015a5c24-f7b4-4330-be3e-d867aee2274c"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="FIRST" id="_d7e7f726-a4da-492e-9ffb-0b821337acc3" outputLabel="Car Age Multiplier">
+      <semantic:input id="_96ce26ba-f04d-4995-b396-c8d3b731668b">
+        <semantic:inputExpression typeRef="feel:number">
+          <semantic:text>Car.age</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_5d2f5421-b67c-4542-8373-4ca349adbc60"/>
+      <semantic:rule id="_0ede9c9f-475f-44db-844f-d686a1c9f8af">
+        <semantic:inputEntry id="_c16a8f97-c7ad-4c86-a2d1-794d708205eb">
+          <semantic:text>&gt; 50</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_4d807d17-6655-4ff2-aef9-c29f807b93e3">
+          <semantic:text>1.3</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_a873d5e8-0783-44f3-8898-398f9d49c034">
+        <semantic:inputEntry id="_d37f7960-ddad-4d2d-9bd9-1e5dd52e09e9">
+          <semantic:text>&gt; 25</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_c91652ff-f2b3-4241-b814-b68c435d3012">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_0da85ce0-d1c4-4b2c-9000-80755309b3b4">
+        <semantic:inputEntry id="_06806560-7106-4828-a2e2-1f432fc26859">
+          <semantic:text>&gt; 10</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_5e14f93e-a113-453b-af25-cb86210300df">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_83e70e1c-6c84-4ece-ba08-54e117dc8427">
+        <semantic:inputEntry id="_872aff8f-1295-4302-a900-966ff8f29fed">
+          <semantic:text>&gt; 0</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6cfadd0c-4586-42cd-86c9-8432ca8dd1ad">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_30209f5a-b355-4da7-9591-3f3e1eaa437d" name="Driver">
+    <semantic:variable id="_29dc8fdc-c6a7-49c7-9b70-39df79ecf1d4" name="Driver" typeRef="Driver"/>
+  </semantic:inputData>
+  <semantic:decision id="_2692c45e-7ea6-4eac-bcf7-a0bbfb898d83" name="Driver Age Multiplier">
+    <semantic:variable id="_da2d3127-15bc-4c69-9367-291dd7c08aae" name="Driver Age Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_30209f5a-b355-4da7-9591-3f3e1eaa437d"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="FIRST" id="_f564f689-efa5-46e6-9a99-b4a41a456ba1" outputLabel="Driver Age Multiplier">
+      <semantic:input id="_be5b0802-c2db-4b67-87e1-9db2e4f6f7ab">
+        <semantic:inputExpression typeRef="feel:number">
+          <semantic:text>Driver.age</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_c93c9561-4ddb-4a8c-8014-c16d3b1f8ead"/>
+      <semantic:rule id="_e00ae07b-14bd-42ea-a6aa-2e146dd19905">
+        <semantic:inputEntry id="_51a2b96a-3a2e-420e-b4b7-f0802ac75371">
+          <semantic:text>&gt;= 70</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_9bd5dbd1-8d59-4886-bd59-48f59f53dd22">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_e2f750ec-51d0-4e9d-a7bb-e5e5abf267d0">
+        <semantic:inputEntry id="_1d400176-3e26-47a8-b422-390b1be25a23">
+          <semantic:text>&gt;= 60</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_da4d70f5-ec94-4ef6-8754-6c21d6b80077">
+          <semantic:text>0.8</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_2149eab8-c6c3-4eaa-9dbc-e91bd4fed7db">
+        <semantic:inputEntry id="_7a5ce41c-72b1-4a6c-a278-af786d20e86f">
+          <semantic:text>&gt;= 45</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_de7b2692-25f9-4196-95db-1afb46e8f73a">
+          <semantic:text>0.9</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_fa110313-aa16-48aa-8591-844f6e653ed7">
+        <semantic:inputEntry id="_875a00aa-40a0-4342-b57f-2f9d13e09994">
+          <semantic:text>&gt;= 25</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_a19379a1-cc69-4cfc-b4d5-75fe8aa686ca">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_10e0ddf1-6393-4e11-b44a-9715cd9f5db3">
+        <semantic:inputEntry id="_f630216f-8af8-4591-9791-04b056a575ad">
+          <semantic:text>&lt;= 21</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_4b891f71-89b3-425a-a884-5b93beacb9c4">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_84e44920-c321-44fc-85f1-dc7f02236e42" name="Driver Accidents Multiplier">
+    <semantic:variable id="_65c7f4ee-09dd-471f-80a3-ecec5fb9e2b3" name="Driver Accidents Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_30209f5a-b355-4da7-9591-3f3e1eaa437d"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="FIRST" id="_bb8be730-64cc-4109-b4cd-592872aa48a3" outputLabel="Driver Accidents Multiplier">
+      <semantic:input id="_04214a70-f06e-4619-94a2-4a500a8b8594">
+        <semantic:inputExpression typeRef="feel:number">
+          <semantic:text>Driver.numAccidents</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_fe48d1bd-7f0a-4162-ab62-fa6af75a2a48"/>
+      <semantic:rule id="_5299fa31-5215-4907-bb46-7abf5ee2123e">
+        <semantic:inputEntry id="_e63f1cf9-d9b8-4a85-af55-f91a6a15ecb0">
+          <semantic:text>&gt;= 5</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2d273cae-5583-4522-98c6-6709cc935202">
+          <semantic:text>1.3</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_5c7e6dfb-341d-4656-b11e-28646b41ec43">
+        <semantic:inputEntry id="_b1a57675-ffd2-4bd8-b687-f0e22637bc9a">
+          <semantic:text>&gt;= 3</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b46cb0c5-8381-4b1c-bb3f-a4f8622da4f3">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_55cd6573-198f-4161-b787-0d2076594274">
+        <semantic:inputEntry id="_8d9d6948-9b36-4bbd-bcd5-d0de8b9ce31c">
+          <semantic:text>&gt;= 1</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b841de2b-36d0-4bcb-8bc6-349faccb3cf8">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_9add3e7c-2574-4ab5-85c6-6fa20014c61a">
+        <semantic:inputEntry id="_b795bf00-85e0-4b97-b8f3-2290e1fd2b31">
+          <semantic:text>&gt;= 0</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_70f8ee53-08f8-47f9-870a-6b796d23222b">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_9d021d80-6e48-4dc5-81f2-916ed6da8d5f" name="QuoteMultiplier">
+    <semantic:variable id="_51806fdc-12c1-4940-91c5-5fd24872d3e8" name="QuoteMultiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_002cc8df-576f-477e-8ff6-c5bbb1c5ee82"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_cdfdd8a4-44f3-4606-9ec2-49aa7621a647"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_0ddedbb6-d60c-42a2-a06b-c312dd09d8f2"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_2692c45e-7ea6-4eac-bcf7-a0bbfb898d83"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_84e44920-c321-44fc-85f1-dc7f02236e42"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_b2f97d72-2b2b-4101-b874-11900e0a2fa5"/>
+    </semantic:informationRequirement>
+    <semantic:literalExpression id="_c2784fd6-7359-4c22-8bff-034dfdc940a2">
+      <semantic:text>Car Type Multiplier * Car Age Multiplier * Car Price Multiplier * Driver Age Multiplier * Driver Accidents Multiplier * Driver Tickets Multiplier</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+  <semantic:decision id="_b2f97d72-2b2b-4101-b874-11900e0a2fa5" name="Driver Tickets Multiplier">
+    <semantic:variable id="_840c539e-8192-43fd-ab95-785e6fb48ca6" name="Driver Tickets Multiplier" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_30209f5a-b355-4da7-9591-3f3e1eaa437d"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="FIRST" id="_bb8be730-64cc-4109-b4cd-592872aa48a3" outputLabel="Driver Tickets Multiplier">
+      <semantic:input id="_316a1adf-f4d8-49ad-8784-d695f1cb8844">
+        <semantic:inputExpression typeRef="feel:number">
+          <semantic:text>Driver.numTickets</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_9e54bb1d-7159-4231-912c-95ba7f923f57"/>
+      <semantic:rule id="_113b0f91-3e1d-4fe2-bf41-099c8d39471b">
+        <semantic:inputEntry id="_e63f1cf9-d9b8-4a85-af55-f91a6a15ecb0">
+          <semantic:text>&gt;= 5</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2d273cae-5583-4522-98c6-6709cc935202">
+          <semantic:text>1.3</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_c7d88c08-e9ac-417e-9ac9-3dca78430a45">
+        <semantic:inputEntry id="_b1a57675-ffd2-4bd8-b687-f0e22637bc9a">
+          <semantic:text>&gt;= 3</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b46cb0c5-8381-4b1c-bb3f-a4f8622da4f3">
+          <semantic:text>1.2</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_78c29825-38c5-45dd-95f4-d0685cb0ff2a">
+        <semantic:inputEntry id="_8d9d6948-9b36-4bbd-bcd5-d0de8b9ce31c">
+          <semantic:text>&gt;= 1</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b841de2b-36d0-4bcb-8bc6-349faccb3cf8">
+          <semantic:text>1.1</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_c3f6088d-1b88-4a57-b7a0-06782179c92d">
+        <semantic:inputEntry id="_b795bf00-85e0-4b97-b8f3-2290e1fd2b31">
+          <semantic:text>&gt;= 0</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_70f8ee53-08f8-47f9-870a-6b796d23222b">
+          <semantic:text>1.0</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_49093984-1a96-486c-a2ea-c3b4152b4011" name="BaseQuote">
+    <semantic:variable id="_43a4df36-9ae2-4753-b182-38a99100bbc7" name="BaseQuote" typeRef="feel:number"/>
+  </semantic:inputData>
+  <semantic:decision id="_acf57786-5c54-47d1-90e1-b1018e3da6d6" name="Quote">
+    <semantic:variable id="_cdc9560b-5ae2-4fbd-83c3-8eaea101eb96" name="Quote" typeRef="feel:number"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_49093984-1a96-486c-a2ea-c3b4152b4011"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_9d021d80-6e48-4dc5-81f2-916ed6da8d5f"/>
+    </semantic:informationRequirement>
+    <semantic:literalExpression id="_cdc105f4-ff23-4963-ad24-1d6044da2f13">
+      <semantic:text>BaseQuote * QuoteMultiplier</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+</semantic:definitions>
